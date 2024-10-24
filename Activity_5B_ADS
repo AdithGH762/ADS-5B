@@ -1,0 +1,47 @@
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+class BinaryTree:
+    def __init__(self, root_value):
+        self.root = Node(root_value)
+
+    # Pre-order DFS: Root -> Left -> Right
+    def pre_order(self, node):
+        if node:
+            print(node.value, end=" ")  # Visit root
+            self.pre_order(node.left)   # Traverse left subtree
+            self.pre_order(node.right)  # Traverse right subtree
+
+    # In-order DFS: Left -> Root -> Right
+    def in_order(self, node):
+        if node:
+            self.in_order(node.left)    # Traverse left subtree
+            print(node.value, end=" ")  # Visit root
+            self.in_order(node.right)   # Traverse right subtree
+
+    # Post-order DFS: Left -> Right -> Root
+    def post_order(self, node):
+        if node:
+            self.post_order(node.left)  # Traverse left subtree
+            self.post_order(node.right) # Traverse right subtree
+            print(node.value, end=" ")  # Visit root
+
+# Example Usage
+if __name__ == "__main__":
+    # Creating the binary tree
+    bt = BinaryTree(1)      # Root node
+    bt.root.left = Node(2)
+    bt.root.right = Node(3) 
+    bt.root.left.left = Node(4)
+    bt.root.left.right = Node(5)
+    bt.root.right.left = Node(6)
+    bt.root.right.right = Node(7)
+    print("Pre-order Traversal:")
+    bt.pre_order(bt.root)
+    print("\nIn-order Traversal:")
+    bt.in_order(bt.root)
+    print("\nPost-order Traversal:")
+    bt.post_order(bt.root)
